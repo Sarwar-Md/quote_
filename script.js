@@ -3,16 +3,43 @@ const quoteText = document.getElementById('quote');
 const authortext = document.getElementById('author');
 const twitterBtn = document.getElementById('twitter');
 const newQuotebtn = document.getElementById('new-quote');
-const loader = document.getElementById('loader');
+const loader = document.getElementById('spinner');
+const themeChangeBtn = document.getElementById('theme_type');
+const darkStyleSheet = document.styleSheets[2];
+const langChangeOpt = document.getElementById('lang');
 
-// show loading
-function loading(){
+
+
+/**
+ * Global Variables
+ */
+// loading the default stylesheet only
+darkStyleSheet.disabled = true;
+
+// declaring the error counter
+let i;
+
+// declaring the default language
+let lang = 'en';
+
+/**
+ * functions
+ */
+
+function changeThemeColor(){
+    if(darkStyleSheet.disabled){
+        darkStyleSheet.disabled = false;
+    } else{
+        darkStyleSheet.disabled = true;
+    }
+}
+
+function showTheSpinner(){
     loader.hidden = false;
     quoteContainer.hidden = true;
 }
 
-// hide loading
-function hideLoading(){
+function hideTheSpinner(){
     if(!loader.hidden){
         quoteContainer.hidden = false;
         loader.hidden = true;
@@ -20,42 +47,28 @@ function hideLoading(){
 
 }
 
-// get quote from api
-async function getQuote(){
-    loading();
-    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const apiUrl = 'http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json';
-    try {
+function changeLanguage() {
+    lang = langChangeOpt.value;
+    getQuote();
+}
 
-        const response = await fetch(proxyUrl + apiUrl);
-        const data = await response.json();
-        
-
-        // reducing font size if the quote is too long
-        if(data.quoteText.length > 120){
-            quoteText.classList.add('long-quote');
-        } else{
-            quoteText.classList.remove('long-quote');
-        }
-
-        quoteText.innerText = data.quoteText;
-
-
-        //checking if author name is unknown
-        if(data.quoteAuthor === ''){
-            authortext.innerText = 'Unknown';
-        } else{
-            authortext.innerText = data.quoteAuthor;
-        }
-        
-       hideLoading();
-        
-        
-    } catch (error) {
-        getQuote();
-        console.log('Woops No Quotes', error);
+function addQuoteText(quote) {
+    // reducing font size if the quote is too long
+    if(quote.length > 120){
+        quoteText.classList.add('long-quote');
+    } else{
+        quoteText.classList.remove('long-quote');
     }
 
+    quoteText.innerText = quote;
+}
+
+function addAuthor(author) {
+    if(author === ''){
+        authortext.innerText = 'Unknown';
+    } else{
+        authortext.innerText = author;
+    } 
 }
 
 function tweetQuote(){
@@ -65,9 +78,49 @@ function tweetQuote(){
     window.open(twitterUrl, '_blank');
 }
 
-// event listners
+// get quote from api
+
+async function getQuote(){    
+    
+    showTheSpinner();
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    const apiUrl = `http://api.forismatic.com/api/1.0/?method=getQuote&lang=${lang}&format=json`;
+    try {
+
+        const response = await fetch(proxyUrl + apiUrl);
+        const data = await response.json();     
+
+        addQuoteText(data.quoteText);
+        addAuthor(data.quoteAuthor);    
+       
+        hideTheSpinner();
+       
+        i = 0;       
+        
+    } catch (error) {
+        i++;
+        if(i < 10){
+            getQuote();
+            
+        } else{            
+            quoteText.innerText = "Something went wrong, please try again.";
+            authortext.innerText = "";
+            hideTheSpinner();
+            i = 0;
+        }   
+    }
+    
+}
+
+/**
+ * Event Listners
+ */
 newQuotebtn.addEventListener('click', getQuote);
 twitterBtn.addEventListener('click', tweetQuote);
+themeChangeBtn.addEventListener('click', changeThemeColor);
+langChangeOpt.addEventListener('change', changeLanguage);
 
-// Onload
+/**
+ * Start the application onload
+ */
  getQuote();
