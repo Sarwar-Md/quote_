@@ -7,6 +7,7 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"/>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dark.css">
 </head>
 <body>
     <div class="quote-container" id="quote-container">
@@ -20,19 +21,40 @@
             <span id="author"></span>
         </div>
         <!-- Buttons -->
+        
         <div class="button-container">
-            <button class="twitter-button" id="twitter" title="Tweet this!">
-                <i class="fab fa-twitter"></i>
-            </button>
-            <button id="new-quote">New Quote</button>
+            <div>
+                <select name="lang" id="lang" class="custom-select">
+                    <option value="en">EN</option>
+                    <option value="ru">RU</option>
+                </select>
+                <button id="theme_type" class="custom-button">Change theme</button>
+            </div>
+            <div>
+                <button class="twitter-button custom-button" id="twitter" title="Tweet this!">
+                    <i class="fab fa-twitter"></i>
+                </button>            
+                <button id="new-quote" class="custom-button">New Quote</button>
+            </div>
+            
+            
         </div>
     </div>
 
     <!-- Loader -->
 
-    <div class="loader" id="loader">
-        
+     <!-- <div class="loader" id="loader"> -->
+    <div class="spinner" id="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
     </div>
+        
+        
+        
+    
 
     <!-- Script -->
     <script src="script.js"></script>

@@ -55,7 +55,9 @@ body {
   justify-content: space-between;
 }
 
-button{
+
+
+.custom-button{
   cursor: pointer;
   font-size: 1.2rem;
   height: 2.5rem;
@@ -68,13 +70,26 @@ button{
   box-shadow: 0 0.3rem rgba(121, 121, 121, 0.65);
 }
 
-button:hover{
+.custom-button:hover{
   filter: brightness(110%);
   }
 
-button:active{
+.custom-button:active{
   transform: translate(0, 0.3rem);
   box-shadow: 0 0.1rem rgba(255, 255, 255, 0.65);
+}
+
+.custom-select{
+  cursor: pointer;
+  font-size: 1.2rem;
+  height: 2.5rem;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  background: #333;
+  outline: none;
+  padding: 0.5rem 1.8rem;
+  
 }
 
 .twitter-button:hover{
@@ -85,20 +100,65 @@ button:active{
   font-size: 1.5rem;
 }
 
-/* loader */
-.loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #333; /* Dark grey */
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
+/* Spinner */
+/* Source: https://tobiasahlin.com/spinkit/ */
+.spinner {
+  margin: 100px auto;
+  width: 50px;
+  height: 40px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.spinner > div {
+  background-color: #333;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+  
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% { 
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% { 
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
 }
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
+} 
 
 /* media Query */
 @media screen and (max-width: 1000px){
