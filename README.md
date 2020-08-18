@@ -1,5 +1,5 @@
 
-##Single page Quote generator application.##
+## Single page Quote generator application.##
 This project is just an extended version of [original project](https://github.com/zero-to-mastery/javascript20-projects).
 
 **What have been extended:**
@@ -10,7 +10,7 @@ This project is just an extended version of [original project](https://github.co
 api used from : http://forismatic.com/
 
 **Look back:** 
-            The dark theme and other added elements style is not up to the mark.
+            The dark theme and other added elements style is not up to the mark.            
             Two varibales has been declared in the global envioroment (: .
 
 
