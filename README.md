@@ -1,3 +1,4 @@
+
 ##Single page Quote generator application.
 This project is just an extended version of [original project](https://github.com/zero-to-mastery/javascript20-projects).
 
@@ -11,3 +12,10 @@ api used from : http://forismatic.com/
 **Look back:** 
             The dark theme and other added elements style is not up to the mark.
             Two varibales has been declared in the global envioroment (: .
+
+Automatically generates random quotes. A single page application
+
+api used from : http://forismatic.com/en/
+
+Source: This is just a code along with Andrei Neagoie and Jacinto Wong from the course 'https://www.udemy.com/course/javascript-web-projects-to-build-your-portfolio-resume/'
+
