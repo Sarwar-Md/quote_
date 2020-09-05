@@ -2,6 +2,8 @@
 ## Single page Quote generator application.##
 This project is just an extended version of [original project](https://github.com/zero-to-mastery/javascript20-projects).
 
+# [Live Demo](https://sarwar-md.github.io/quote_/)
+
 **What have been extended:**
 1) *Added a counter to the error handler to prevent infinitive loop.*
 2) Added a language option so that user can switch between them. In this case only two as provided by the api.
